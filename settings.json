@@ -1,0 +1,5 @@
+{
+    "pixel_threshold": 40,
+    "image_threshold": 90.0,
+    "queue_length": 5
+}

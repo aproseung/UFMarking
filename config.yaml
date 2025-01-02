@@ -1,0 +1,3 @@
+image_save_path: 'D:/min_UFM/log'
+frame_timeout: 10000
+trigger_mode: 2
