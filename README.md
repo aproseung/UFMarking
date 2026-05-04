@@ -1,14 +1,37 @@
-# Uniformity Marking 부적합 탐지 시스템
+# UF Marking Defect Detection System
 
-## 파일 구조
-- Camera/ : 카메라 조작, 연결 파일
-- Camera/HuarayCam.py : 카메라 조작 함수
-- Camera/run_cam.py : 카메라 객체 생성, 모듈화. UI와 연결
----
-- data_proc.py : MES로부터 받아온 데이터 정리
-- img_proc.py : 이미지 저장 함수, 경로
-- nmp.py : MES와 소켓 통신 모듈화
-- run.py : Worker - NMP - Camera 연결
-- ui.py : UI 시각화
-- worker.py : 객체 탐지, 부적합 판정 알고리즘 실제 수행
-- main.py : Thread 생성, ui와 runner Thread 분리해 실행
+## Description
+An image-based defect detection system for uniformity marking inspection.  
+The system detects marking regions from camera images, evaluates marking quality, and saves inspection results automatically.
+
+## Core Features
+- Detects marking regions using a YOLO-based object detector
+- Crops and resizes detected marking areas for standardized inspection
+- Classifies markings as OK / NG based on pixel-level color difference analysis
+- Saves cropped images, contour visualization, bounding boxes, and result logs
+- Supports real-time UI integration through PyQt signal communication
+
+## My Contribution
+- Implemented the core inspection logic in `worker.py`
+- Integrated YOLO object detection with rule-based defect judgment
+- Designed pixel-ratio based OK / NG classification algorithm
+- Added result saving pipeline for OK, NG, contour, cropped image, and bounding box outputs
+- Connected processing results to the UI using PyQt signals
+
+## Pipeline
+Camera Image  
+→ YOLO Marking Detection  
+→ Bounding Box Crop  
+→ Resize to Fixed Size  
+→ Pixel-level Marking Area Analysis  
+→ OK / NG Classification  
+→ Save Results & Notify UI
+
+## Tech Stack
+- Python
+- PyTorch
+- Ultralytics YOLO
+- OpenCV
+- NumPy
+- PIL
+- PyQt5
